@@ -5,9 +5,47 @@
 
 .container{
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
 }
 
-/* .label {
-    font-family: 'Poppins', sans-serif;
+.label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
+
+.line {
+    fill: none;
+    stroke: rgb(60, 115, 185);
+    stroke-width: 2px;
+}
+
+/* .x.axis, .y.axis{
+    fill: 'red';
+    font-size: 14px;
+    font-family: 'Nunito', sans-serif;
 } */
+
+.x.axis line, .x.axis path, .x.axis text{
+    stroke: 'black';
+    stroke-width: 1.5;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+}
+
+.y.axis line, .y.axis path, .y.axis text{
+    stroke: 'black';
+    stroke-width: 1.5;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+}
+
+.dot{
+    fill: #dd5201;
+    /* stroke: #fff; */
+}
+
+.tooltip{
+    
+}
