@@ -4,32 +4,261 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script type="text/javascript" src="./node_modules/atomic-bohr-model/dist/atomicBohrModel.min.js" charset="utf-8"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div class="container">
-        <!-- <div id="bohr-model-container"></div> -->
-        <div id="bar-chart"></div>
-        <div id="line-chart"></div>
+    <div class="contentContainer">
+        <h1>Ionization Energy & Electron Configuration</h1>
+        <p class="content-text">
+            The ionization energy is defined as the minimum amount of energy required to remove the most loosely bound electron, 
+            the valence electron, of an isolated neutral gaseous atom, molecule or ion. It is quantitatively expressed in symbols as
+        </p>
+    </br>
+        <p class="content-text">
+            <span id="formula">X + energy → X+ + e−</span>
+            </br>where X is any atom, molecule or ion capable of being ionized, X+ is that atom or molecule with an electron removed, 
+                and e− is the removed electron. 
+        </p>
+    </br>
+        <p class="content-text">
+                Generally, the closer the electrons are to the nucleus of the atom, the higher the atom's ionization energy. 
+                Comparison of ionization energy of atoms in the periodic table reveals two patterns:
+           <ol>
+               <li>
+                   The energy generally increases as one moves from left to right within a given period.
+               </li>
+               <li>
+                   The energy generally decreases as one moves down a given group.
+               </li>
+           </ol>
+        </p>
+    </br>
+        <p class="content-text">
+            Some factors affecting the ionization energy include:
+            <ol>
+                <li>
+                    Nuclear charge: the greater the magnitude of nuclear charge the more tightly the electrons are held by the nucleus and hence more will be ionization energy.
+                </li>
+                <li>
+                    Number of electron shells: the greater the size of the atom less tightly the electrons are held by the nucleus and ionization energy will be less
+                </li>
+                <li>
+                    Effective nuclear charge (Zeff): the greater the magnitude of electron shielding and penetration the less tightly the electrons are held by the nucleus, the lower the Zeff of the electron, and hence less will be the ionization energy.
+                </li>
+                <li>
+                    Type of orbital ionized: the atom having a more stable electronic configuration has less tendency to lose electrons and consequently has high ionization energy.
+                </li>
+                <li>
+                    Occupancy of the orbital matters: if the orbital is half or completely filled then it is harder to remove electrons
+                </li>
+            </ol>      
+        </p>
+    </br>
+        <p class="content-text">
+            This visualization aims to teach student the fifth factor: 
+        </br><span id="highlight">" Occupancy of the orbital matters: if the orbital is half or completely filled then it is harder to remove electrons."</span>
+        </p>
+    </br>
+        <p class="content-text">
+            For example, atom N has half-filled 2p orbital, which means the its electron configuration is more stable. 
+            Therefore, it is harder to remove its electrons and its ionization energy would be slightly higher than its neighboring atoms such as C and O.
+            In like manner, all noble gases such as He, Ne, Ar, Kr, Xe, which have fully-filled orbitals, 
+            their ionization energy would be the highest within a given period.
+        </p>
+    </br>
+        <p class="content-ref">
+            Reference: <a href="https://en.wikipedia.org/wiki/Ionization_energy">Wikipedia Ionization energy</a>
+        </p>
+    </div>
+    <div class="main">
+        <div class="selectionContainer">
+            <div class="selection-area">
+                <div class="atom-area">
+                    <p><span id="atomicNumberValue"></span><span id="symbolValue"></span></p>
+                </div>
+                <!-- <p>Atomic Number: <span id="atomicNumberValue"></span></p> -->
+                <div class="instruction">
+                    <p>Drag the slider to select an atomic number:</p>
+                </div>
+        
+                <input type="range" min="1" max="104" value="7" class="slider">
+            
+                <div class="instruction">
+                    <p>Or...</p>
+                    <p>Select an atom on the periodic table:</p>
+                </div>
+                <div class="table-container">
+                    <div class="row">
+                        <div class="element-box" id="1"><p>H</p></div>
+                        <div class="element-box" id="2"><p>He</p></div>
+                    </div>
+                    <div class="row">
+                        <div class="row-left">
+                            <div class="element-box" id="3"><p>Li</p></div>
+                            <div class="element-box" id="4"><p>Be</p></div>
+                        </div>
+                        <div class="row-right">
+                            <div class="element-box" id="5"><p>B</p></div>
+                            <div class="element-box" id="6"><p>C</p></div>
+                            <div class="element-box selected" id="7"><p>N</p></div>
+                            <div class="element-box" id="8"><p>O</p></div>
+                            <div class="element-box" id="9"><p>F</p></div>
+                            <div class="element-box" id="10"><p>Ne</p></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row-left">
+                            <div class="element-box" id="11"><p>Na</p></div>
+                            <div class="element-box" id="12"><p>Mg</p></div>
+                        </div>
+                        <div class="row-right">
+                            <div class="element-box" id="13"><p>Al</p></div>
+                            <div class="element-box" id="14"><p>Si</p></div>
+                            <div class="element-box" id="15"><p>P</p></div>
+                            <div class="element-box" id="16"><p>S</p></div>
+                            <div class="element-box" id="17"><p>Cl</p></div>
+                            <div class="element-box" id="18"><p>Ar</p></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row-left">
+                            <div class="element-box" id="19"><p>K</p></div>
+                            <div class="element-box" id="20"><p>Ca</p></div>
+                            <div class="element-box" id="21"><p>Sc</p></div>
+                        </div>
+                        <div class="row-right">
+                            <div class="element-box" id="22"><p>Ti</p></div>
+                            <div class="element-box" id="23"><p>V</p></div>
+                            <div class="element-box" id="24"><p>Cr</p></div>
+                            <div class="element-box" id="25"><p>Mn</p></div>
+                            <div class="element-box" id="26"><p>Fe</p></div>
+                            <div class="element-box" id="27"><p>Co</p></div>
+                            <div class="element-box" id="28"><p>Ni</p></div>
+                            <div class="element-box" id="29"><p>Cu</p></div>
+                            <div class="element-box" id="30"><p>Zn</p></div>
+                            <div class="element-box" id="31"><p>Ga</p></div>
+                            <div class="element-box" id="32"><p>Ge</p></div>
+                            <div class="element-box" id="33"><p>As</p></div>
+                            <div class="element-box" id="34"><p>Se</p></div>
+                            <div class="element-box" id="35"><p>Br</p></div>
+                            <div class="element-box" id="36"><p>Kr</p></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row-left">
+                            <div class="element-box" id="37"><p>Rb</p></div>
+                            <div class="element-box" id="38"><p>Sr</p></div>
+                            <div class="element-box" id="39"><p>Y</p></div>
+                        </div>
+                        <div class="row-right">
+                            <div class="element-box" id="40"><p>Zr</p></div>
+                            <div class="element-box" id="41"><p>Nb</p></div>
+                            <div class="element-box" id="42"><p>Mo</p></div>
+                            <div class="element-box" id="43"><p>Tc</p></div>
+                            <div class="element-box" id="44"><p>Ru</p></div>
+                            <div class="element-box" id="45"><p>Rh</p></div>
+                            <div class="element-box" id="46"><p>Pd</p></div>
+                            <div class="element-box" id="47"><p>Ag</p></div>
+                            <div class="element-box" id="48"><p>Cd</p></div>
+                            <div class="element-box" id="49"><p>In</p></div>
+                            <div class="element-box" id="50"><p>Sn</p></div>
+                            <div class="element-box" id="51"><p>Sb</p></div>
+                            <div class="element-box" id="52"><p>Te</p></div>
+                            <div class="element-box" id="53"><p>I</p></div>
+                            <div class="element-box" id="54"><p>Xe</p></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row-left">
+                            <div class="element-box" id="55"><p>Cs</p></div>
+                            <div class="element-box" id="56"><p>Ba</p></div>
+                            <div class="element-box" id="57"><p>La</p></div>
+                        </div>
+                        <div class="row-right">
+                            <div class="element-box" id="72"><p>Hf</p></div>
+                            <div class="element-box" id="73"><p>Ta</p></div>
+                            <div class="element-box" id="74"><p>W</p></div>
+                            <div class="element-box" id="75"><p>Re</p></div>
+                            <div class="element-box" id="76"><p>Os</p></div>
+                            <div class="element-box" id="77"><p>Ir</p></div>
+                            <div class="element-box" id="78"><p>Pt</p></div>
+                            <div class="element-box" id="79"><p>Au</p></div>
+                            <div class="element-box" id="80"><p>Hg</p></div>
+                            <div class="element-box" id="81"><p>Tl</p></div>
+                            <div class="element-box" id="82"><p>Pb</p></div>
+                            <div class="element-box" id="83"><p>Bi</p></div>
+                            <div class="element-box" id="84"><p>Po</p></div>
+                            <div class="element-box" id="85"><p>At</p></div>
+                            <div class="element-box" id="86"><p>Rn</p></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row-left">
+                            <div class="element-box" id="87"><p>Fr</p></div>
+                            <div class="element-box" id="88"><p>Ra</p></div>
+                            <div class="element-box" id="89"><p>Ac</p></div>
+                            <div class="element-box" id="90"><p>Th</p></div>
+                            <div class="element-box" id="104"><p>Rf</p></div>
+                        </div>
+                    </div>
+                </div>           
+                <div class="table-container-2">
+                    <div class="row">
+                        <div class="row-left">
+                            <div class="element-box" id="58"><p>Ce</p></div>
+                            <div class="element-box" id="59"><p>Pr</p></div>
+                            <div class="element-box" id="60"><p>Nd</p></div>
+                            <div class="element-box" id="61"><p>Pm</p></div>
+                            <div class="element-box" id="62"><p>Sm</p></div>
+                            <div class="element-box" id="63"><p>Eu</p></div>
+                            <div class="element-box" id="64"><p>Gd</p></div>
+                            <div class="element-box" id="65"><p>Tb</p></div>
+                            <div class="element-box" id="66"><p>Dy</p></div>
+                            <div class="element-box" id="67"><p>Ho</p></div>
+                            <div class="element-box" id="68"><p>Er</p></div>
+                            <div class="element-box" id="69"><p>Tm</p></div>
+                            <div class="element-box" id="70"><p>Yb</p></div>
+                            <div class="element-box" id="71"><p>Lu</p></div>
+                        </div>           
+                    </div>
+                    <div class="row">
+                        <div class="row-left">
+                            <div class="element-box" id="90"><p>Th</p></div>
+                            <div class="element-box" id="91"><p>Pa</p></div>
+                            <div class="element-box" id="92"><p>U</p></div>
+                            <div class="element-box" id="93"><p>Np</p></div>
+                            <div class="element-box" id="94"><p>Pu</p></div>
+                            <div class="element-box" id="95"><p>Am</p></div>
+                            <div class="element-box" id="96"><p>Cm</p></div>
+                            <div class="element-box" id="97"><p>Bk</p></div>
+                            <div class="element-box" id="98"><p>Cf</p></div>
+                            <div class="element-box" id="99"><p>Es</p></div>
+                            <div class="element-box" id="100"><p>Fm</p></div>
+                            <div class="element-box" id="101"><p>Md</p></div>
+                            <div class="element-box" id="102"><p>No</p></div>
+                            <div class="element-box" id="103"><p>Lr</p></div>         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div id="bar-chart-div">
+                <svg width="100%" height="300px" id="bar-chart">
+                </svg>
+            </div>
+            <div id="line-chart-div">
+                <svg width="100%" height="500px" id="line-chart">
+                </svg>
+            </div>
+        </div>
     </div>
 
-    <!-- <script>
-        
-        var atomicConfig = {
-            containerId: "#bohr-model-container",
-            numElectrons: 88,
-            idNumber: 1,
-            //rotateConfig: {speed: 50, clockwise: true},
-        }
-
-        var myAtom = new Atom(atomicConfig)
-    
-    
-    </script> -->
     <script type="text/javascript" src="atomic_data.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </body>
