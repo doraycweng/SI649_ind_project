@@ -246,8 +246,10 @@ li{
 }
 
 #highlight{
+    font-family: 'Lato', sans-serif;
     font-weight: 600;
     color:#DB3E1A;
+    /* background-color: rgba(219, 61, 26, 0.151) */
 }
 
 .content-ref{
